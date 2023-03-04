@@ -1,26 +1,30 @@
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common/decorators';
 import { get } from 'http';
+import { BookService } from './book.service';
 
 @Controller('book')
 export class BookController {
+  // public bookService: BookService = new BookService();
+
+  constructor(private bookService : BookService){}
   //   add a book
-  @Post("/add")
+  @Post('/add')
   addBook(): string {
-    return 'This will add book';
+    return this.bookService.addBook();
   }
   // delete book
- @Delete("/delete")
+  @Delete('/delete')
   deleteBook(): string {
-    return 'This will delete book';
+    return this.bookService.deleteBook();
   }
   //update book
-  @Put("/update")
+  @Put('/update')
   updateBook(): string {
-    return 'This will update book';
+    return this.bookService.updateBook();
   }
   //find all book
-  @Get("/find")
+  @Get('/find')
   findBook(): string {
-    return 'This will find book';
+    return this.bookService.findBook();
   }
 }
